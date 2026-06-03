@@ -622,7 +622,7 @@ body {
     <div class="join-icon"><i class="ti ti-door-enter"></i></div>
     <div class="join-title">Code eingeben</div>
     <div class="join-sub">Gib den 8-stelligen Code ein, den dir der Host mitgeteilt hat.</div>
-    <input class="join-code-input" id="join-code-input" maxlength="9" placeholder="XXXX-XXXX" oninput="onJoinInput(this)"/>
+    <input class="join-code-input" id="join-code-input" maxlength="9" placeholder="XXXX-1234" oninput="onJoinInput(this)"/>
     <div id="join-error" class="auth-error" style="width:100%;max-width:280px;margin-bottom:8px;"></div>
     <button class="join-btn" id="join-btn" onclick="joinLobby()" disabled>Beitreten</button>
     <button class="join-back" onclick="show('home')">Abbrechen</button>
@@ -817,7 +817,7 @@ function esc(s){if(!s)return'';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;
 function ini(n){if(!n)return'?';return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
 function shortName(a,b){const s=n=>n&&n.length>9?n.slice(0,8)+'.':n||'?';return s(a)+' & '+s(b);}
 function generateCode(){
-  const karten=['KOENIG','ASS','DAME','OBER','UNTER','WELI'];
+  const karten=['KING','DAME','OBER','LAUB','HERZ','WELI'];
   const k=karten[Math.floor(Math.random()*karten.length)];
   const n=Math.floor(1000+Math.random()*9000);
   return k+'-'+n;
@@ -1112,7 +1112,7 @@ window.goToJoin = function() {
 window.onJoinInput = function(el) {
   let v = el.value.toUpperCase().replace(/[^A-Z0-9-]/g,'');
   el.value = v;
-  document.getElementById('join-btn').disabled = v.length < 8;
+  document.getElementById('join-btn').disabled = v.length < 9;
   document.getElementById('join-error').classList.remove('show');
 };
 
